@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+<!-- puts stuff into the area defined as block -->
+{% block content %}
+  <h1>Local Library Home</h1>
+  
+  <p>Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network</em>!</p>
+  <h2>Dynamic content</h2>
+  {% if formal_confidence %}
+  <h1>{{formal_confidence}}</h1>
+  {% endif %}
+  {% if sentences1 %}
+  {% for item in sentences3 %}
+  <h1>{{item}}</h1>
+  {% endfor %}
+  
+  {% endif %}
+
+  </ul>
+{% endblock %}
