@@ -29,7 +29,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '%y+4g7$$31-ns25j^g(wiq4^hj_jkq
 DEBUG='False'
 
 ALLOWED_HOSTS = [
-    'is-it-native.herokuapp.com'
+    'is-it-native.herokuapp.com',
+    '127.0.0.1',
 ]
 
 
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+'django.contrib.sites',
+'django.contrib.sitemaps',
     'robin_scraper',
 ]
 
@@ -54,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'personal_projects.urls'
