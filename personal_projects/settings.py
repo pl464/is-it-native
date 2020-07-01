@@ -27,9 +27,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '%y+4g7$$31-ns25j^g(wiq4^hj_jkq
 #DEBUG = True
 #DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 DEBUG='False'
-
+#is-it-native
 ALLOWED_HOSTS = [
-    'is-it-native.herokuapp.com',
+    'another-test-cooler-thou.herokuapp.com',
     '127.0.0.1',
 ]
 
