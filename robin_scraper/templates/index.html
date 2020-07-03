@@ -1,62 +1,35 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Robin Scraper</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="device-width">
-        
-        <link href="style.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Biryani">
-    </head>
-    
-    <body>
-        <header class="header">
-<!--            TODO: make Title a link back to "home"-->
-            <h1>Robin Scraper</h1>
-            <ul class="nav">
-                <li class="nav__item">
-                    <a class="nav__link" href="about.html" rel="noopener noreferrer">About </a>
-                </li>
-                <li class="nav__item">
-                    <a class="nav__link" href="" target="_blank" rel="noopener noreferrer">Documentation </a>
-                </li>
-                <li class="nav__item">
-                    <a class="nav__link" href="" target="_blank" rel="noopener noreferrer">Contact Us</a>
-                </li>
-            </ul>
-        </header>
-                        
+{% extends "base.html" %}
+
+<!-- puts stuff into the area defined as block -->
+{% block content %}
         <div class="description">
             <p>Enter a phrase into the search box. See how the phrase is used on the Internet, and a prediction of whether the phrase is of native usage or not!</p>
         </div>
-        
         <div class="search">
-            <input class="search__box" type="text" placeholder="Enter a phrase...">
-            <button class="search__button" aria-label="search">
+            <input class="search__box" type="text" placeholder="Enter a phrase..." id="search_term" value="{{search_term}}">
+            <button class="search__button" aria-label="search", onclick="submit_term({% url 'pre_results' %})">
                 <p>Go!</p>
             </button>
         </div>
-        
-        <section class="results">
-            <div class="confidence">
-                <div class="confidence-heading">Predicted likelihood in native English: </div>
-                <div class="confidences">
-                    <p class="confidence-item">Informal Context: 
-                        <input type="text" readonly="readonly" id="informal-context-confidence">
-                    </p>
-                    <p class="confidence-item">Formal Context: 
-                        <input type="text" readonly="readonly" id="formal-context-confidence">
-                    </p>
-                </div>
+        <!-- case where there are no results to display-->
+			{% if search_term == '' %}
+			<section class="results">
+            <div class="confidence-heading">Predicted likelihood in native english: </div>
+            <div class="confidences">
+                <p class="confidence-item">Informal Context: 
+                    <input type="text" readonly="readonly" id="informal-context-confidence">
+                </p>
+                <p class="confidence-item">Formal Context: 
+                    <input type="text" readonly="readonly" id="formal-context-confidence">
+                </p>
             </div>
 
             <div class="sentences">
                 <div class="heading twitter-heading">Twitter</div>
                 <div class="sentences__twitter">
-                    <p>Twitter sentence1. Lorum ipsum dolet, Quintus solem pulsavit et Caecilium necat.</p>
-                    <p>Twitter sentence2. Lorum ipsum dolet, Quintus solem pulsavit et Caecilium necat.</p>
-                    <p>Twitter sentence3. Lorum ipsum dolet, Quintus solem pulsavit et Caecilium necat.</p>
+                    <p>Twitter sentence1</p>
+                    <p>Twitter sentence2</p>
+                    <p>Twitter sentence3</p>
                     <p>Twitter sentence4</p>
                     <p>Twitter sentence5</p>
                     <p>Twitter sentence6</p>
@@ -92,7 +65,7 @@
                     <p>Wikipedia sentence10</p>
                 </div>
             </div>
-            
+
             <div class="averages">
                 <div class="averages__twitter">
                     <p>Average number of retweets: xx</p>
@@ -104,26 +77,49 @@
                     <p>Number of hits: xx</p>
                 </div>
             </div>
-<!--          
-            <div class="reliability">
-                <p class="informal-label">Informal</p>
-                <p class="formal-label">Formal</p>
-                <p class="reliability__informal">Un/likely to be used in native English</p>
-                <p class="reliability__formal">Un/likely to be used in native English</p>
+		{% else %} <!-- if there was a search term, thus a search was executed -->
+		<section class="results">
+            <div class="confidence-heading">Predicted likelihood in native english: </div>
+            <div class="confidences">
+                <p class="confidence-item">Informal Context: 
+                    <input type="text" readonly="readonly" id="informal-context-confidence" value="{{informal_confidence}}">
+                </p>
+                <p class="confidence-item">Formal Context: 
+                    <input type="text" readonly="readonly" id="formal-context-confidence" value = "{{formal_confidence}}">
+                </p>
             </div>
-        </section>
-  -->
-        </section>
-        
-        <footer class="footer">
-            <p class="footer__text">Made by Patrick and Ryan. Updated on <span id="last-modified-date"></span></p>
-            <script>
-                date = new Date(document.lastModified);
-                year = date.getFullYear();
-                month = date.getMonth() + 1;
-                document.getElementById("last-modified-date").innerHTML = month + "/" + date.getDate() + "/" + date.getFullYear();
-            </script>
-        </footer>
-        
-    </body>
-</html>
+		<div class="sentences">
+                <div class="twitter-heading">Twitter</div>
+                <div class="sentences__twitter">
+				{% for sent in twitter_sentences %}
+                    <p>{{sent}}</p>
+				{% endfor %}
+                </div>
+                <div class="reddit-heading">Reddit</div>
+                <div class="sentences__reddit">
+                {% for sent in reddit_sentences %}
+                    <p>{{sent}}</p>
+				{% endfor %}
+                </div>
+                <div class="wikipedia-heading">Wikipedia</div>
+                <div class="sentences__wikipedia">
+                {% for sent in wikipedia_sentences %}
+                    <p>{{sent}}</p>
+				{% endfor %}
+                </div>
+            </div>
+
+            <div class="averages">
+                <div class="averages__twitter">
+                    <p>Average number of retweets: {{twitter_metric}}</p>
+                </div>
+                <div class="averages__reddit">
+                    <p>Average number of upvotes: {{reddit_metric}}</p>
+                </div>
+                <div class="averages__reddit">
+                    <p>Number of hits: {{wikipedia_metric}}</p>
+                </div>
+            </div>
+		{% endif %}
+		</section>
+{% endblock %}

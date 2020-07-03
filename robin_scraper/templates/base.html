@@ -8,16 +8,18 @@
         {% load static %}
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
 		{% load static %}
-		 <script src="{% static 'javascript/button_click_helper.js' %}"></script> 
-        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Biryani">
+        {% load static %}
+		 <script src="{% static 'javascript/button_click_helper.js' %}"></script>
     </head>
+    
 	<body>
         <header class="header">
 <!--            TODO: make Title a link back to "home"-->
             <h1>Robin Scraper</h1>
             <ul class="nav">
                 <li class="nav__item">
-                    <a class="nav__link" href="" target="_blank" rel="noopener noreferrer">About </a>
+                    <a class="nav__link" href="about.html" rel="noopener noreferrer">About </a>
                 </li>
                 <li class="nav__item">
                     <a class="nav__link" href="" target="_blank" rel="noopener noreferrer">Documentation </a>
@@ -28,8 +30,14 @@
             </ul>
         </header>
 	{% block content %}{% endblock %}
-	<footer class="footer">
-            <p>Made by Patrick and Ryan. Updated 06/23/2020</p>
+        <footer class="footer">
+            <p class="footer__text">Made by Patrick and Ryan. Updated on <span id="last-modified-date"></span></p>
+            <script>
+                date = new Date(document.lastModified);
+                year = date.getFullYear();
+                month = date.getMonth() + 1;
+                document.getElementById("last-modified-date").innerHTML = month + "/" + date.getDate() + "/" + date.getFullYear();
+            </script>
         </footer>
         
     </body>
