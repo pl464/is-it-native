@@ -135,4 +135,21 @@ class wikipedia_api_and_cleaner(api_and_cleaner):
         print('number of exact matches capitalization insensitive:', is_contained)
         print('deem to be likely:', is_contained >= instances_until_likely)
 
+def get_informal(twitt,redd):
+    t_low = 100
+    r_low = 100
+    t_high = 600
+    r_high = 600
+    if (twitt >= t_low and redd >= r_low) or (twitt >= t_high or redd >= r_high):
+        return "Likely"
+    elif twitt >= t_low or redd >= r_low:
+        return "Inconclusive"
+    return "Unlikely"
+def get_formal(wiki):
+    w_cut = 2
+    if wiki > w_cut:
+        return "Likely"
+    if wiki == w_cut:
+        return "Inconclusive"
+    return "Unlikely"
 # main()
