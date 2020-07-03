@@ -13,17 +13,18 @@
         </div>
         <!-- case where there are no results to display-->
 			{% if search_term == '' %}
-			<section class="results">
-            <div class="confidence-heading">Predicted likelihood in native english: </div>
-            <div class="confidences">
-                <p class="confidence-item">Informal Context: 
-                    <input type="text" readonly="readonly" id="informal-context-confidence">
-                </p>
-                <p class="confidence-item">Formal Context: 
-                    <input type="text" readonly="readonly" id="formal-context-confidence">
-                </p>
+        <section class="results">
+            <div class="confidence">
+                <div class="confidence-heading">Predicted likelihood in native english: </div>
+                <div class="confidences">
+                    <p class="confidence-item">Informal Context: 
+                        <input type="text" readonly="readonly" id="informal-context-confidence">
+                    </p>
+                    <p class="confidence-item">Formal Context: 
+                        <input type="text" readonly="readonly" id="formal-context-confidence">
+                    </p>
+                </div>
             </div>
-
             <div class="sentences">
                 <div class="heading twitter-heading">Twitter</div>
                 <div class="sentences__twitter">
@@ -79,29 +80,31 @@
             </div>
 		{% else %} <!-- if there was a search term, thus a search was executed -->
 		<section class="results">
-            <div class="confidence-heading">Predicted likelihood in native english: </div>
-            <div class="confidences">
-                <p class="confidence-item">Informal Context: 
-                    <input type="text" readonly="readonly" id="informal-context-confidence" value="{{informal_confidence}}">
-                </p>
-                <p class="confidence-item">Formal Context: 
-                    <input type="text" readonly="readonly" id="formal-context-confidence" value = "{{formal_confidence}}">
-                </p>
+            <div class= "confidence">
+                <div class="confidence-heading">Predicted likelihood in native english: </div>
+                <div class="confidences">
+                    <p class="confidence-item">Informal Context: 
+                        <input type="text" readonly="readonly" id="informal-context-confidence" value="{{informal_confidence}}">
+                    </p>
+                    <p class="confidence-item">Formal Context: 
+                        <input type="text" readonly="readonly" id="formal-context-confidence" value = "{{formal_confidence}}">
+                    </p>
+                </div>
             </div>
 		<div class="sentences">
-                <div class="twitter-heading">Twitter</div>
-                <div class="sentences__twitter">
+                <div class="heading twitter-heading">Twitter</div>
+                <div class="heading sentences__twitter">
 				{% for sent in twitter_sentences %}
                     <p>{{sent}}</p>
 				{% endfor %}
                 </div>
-                <div class="reddit-heading">Reddit</div>
+                <div class="heading reddit-heading">Reddit</div>
                 <div class="sentences__reddit">
                 {% for sent in reddit_sentences %}
                     <p>{{sent}}</p>
 				{% endfor %}
                 </div>
-                <div class="wikipedia-heading">Wikipedia</div>
+                <div class="heading wikipedia-heading">Wikipedia</div>
                 <div class="sentences__wikipedia">
                 {% for sent in wikipedia_sentences %}
                     <p>{{sent}}</p>
