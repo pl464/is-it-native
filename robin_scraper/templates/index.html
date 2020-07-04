@@ -81,6 +81,7 @@
                     <p>Number of hits: xx</p>
                 </div>
             </div>
+        </section>
 		{% else %} <!-- if there was a search term, thus a search was executed -->
 		<section class="results">
             <div class= "confidence">
@@ -96,7 +97,7 @@
             </div>
 		<div class="sentences">
                 <div class="heading twitter-heading">Twitter</div>
-                <div class="heading sentences__twitter">
+                <div class="sentences__twitter">
 				{% for sent in twitter_sentences %}
                     <p>{{sent}}</p>
 				{% endfor %}

@@ -80,6 +80,7 @@
     font-family: var(--ff-primary);
     font-size:24px;
     margin:0;
+    padding-left: 5px;
 }
 
 .search__button{
