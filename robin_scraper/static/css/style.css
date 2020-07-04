@@ -38,6 +38,11 @@
     padding: 0 0 20px;
 }
 
+.header__link {
+    color:black;
+    text-decoration: none;
+}
+
 /* Navigation Links */
 .nav {
     display:flex;
@@ -245,9 +250,6 @@
     font-size: var(--fs-sentences);
 }
 
-@media (min-width:1500px){
-    .footer{position: absolute;}
-}
 .footer__text{
     margin-left: 1em;
 }
