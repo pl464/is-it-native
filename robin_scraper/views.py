@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.views import generic
 
 # Create your views here.
 from robin_scraper.models import  Searcher
@@ -10,6 +9,9 @@ def index_not_used(request):
         'search_term': '',
     }
     return render(request, 'index.html', context=context)
+    
+def get_about(request):
+    return render(request, 'about.html')
 
 def index_used(request,search_term):
     #note that this will break if there is more than one Searcher Object

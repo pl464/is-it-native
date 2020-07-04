@@ -245,6 +245,9 @@
     font-size: var(--fs-sentences);
 }
 
+@media (min-width:1500px){
+    .footer{position: absolute;}
+}
 .footer__text{
     margin-left: 1em;
 }

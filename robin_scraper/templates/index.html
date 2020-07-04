@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 <!-- puts stuff into the area defined as block -->
+{% block titlestuff %}
+<title>Robin Scraper</title>
+{% endblock %}
 {% block content %}
         <div class="description">
             <p>Enter a phrase into the search box. See how the phrase is used on the Internet, and a prediction of whether the phrase is of native usage or not!</p>
@@ -78,7 +81,6 @@
                     <p>Number of hits: xx</p>
                 </div>
             </div>
-        </section>
 		{% else %} <!-- if there was a search term, thus a search was executed -->
 		<section class="results">
             <div class= "confidence">
@@ -92,9 +94,9 @@
                     </p>
                 </div>
             </div>
-		    <div class="sentences">
+		<div class="sentences">
                 <div class="heading twitter-heading">Twitter</div>
-                <div class="sentences__twitter">
+                <div class="heading sentences__twitter">
 				{% for sent in twitter_sentences %}
                     <p>{{sent}}</p>
 				{% endfor %}
@@ -124,6 +126,6 @@
                     <p>Number of hits: {{wikipedia_metric}}</p>
                 </div>
             </div>
-		</section>
 		{% endif %}
+		</section>
 {% endblock %}
