@@ -15,6 +15,8 @@
     </head>
     
 	<body>
+    <div id="wrap">
+    <div id="main">
         <header class="header">
 <!--            TODO: make Title a link back to "home"-->
             <h1><a href = "{% url 'pre_results' %}" class="header__link">Robin Scraper</a></h1>
@@ -31,7 +33,9 @@
             </ul>
         </header>
 	{% block content %}{% endblock %}
-        <footer class="footer">
+    </div>
+    </div>
+        <div class="footer">
             <p class="footer__text">Made by Patrick and Ryan. Updated on <span id="last-modified-date"></span></p>
             <script>
                 date = new Date(document.lastModified);
@@ -39,7 +43,7 @@
                 month = date.getMonth() + 1;
                 document.getElementById("last-modified-date").innerHTML = month + "/" + date.getDate() + "/" + date.getFullYear();
             </script>
-        </footer>
+        </div>
         
     </body>
 </html>

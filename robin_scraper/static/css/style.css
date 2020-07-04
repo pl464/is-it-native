@@ -208,13 +208,16 @@
         max-width:100%;
         justify-content: space-evenly;
         align-items: center;
-        margin: 0;
     }
     
     .averages__twitter{width:32%;}
     .averages__reddit{width:32%;}
     .averages__wikipedia{width:32%;} 
 
+}
+
+.averages {
+    margin-bottom: 20px;
 }
 
 /* Reliability section - currently replaced by "prediction section" */
@@ -239,7 +242,7 @@
 
 */
 /* Footer */
-.footer{
+#footer{
     position:relative;
     bottom:0;
     width:100%;
@@ -252,4 +255,21 @@
 
 .footer__text{
     margin-left: 1em;
+}
+
+html, body {height: 100%;}
+#wrap {min-height: 100%;}
+#main {overflow:auto;
+	padding-bottom: 70px;}  /* must be same height as the footer */
+#footer {position: relative;
+	margin-top: -70px; /* negative value of footer height */
+	height: 70px;
+	clear:both;} 
+/*Opera Fix*/
+body:before {
+	content:"";
+	height:100%;
+	float:left;
+	width:0;
+	margin-top:-32767px;/
 }
