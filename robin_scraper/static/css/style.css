@@ -127,7 +127,6 @@
 /* Sentences Section */
 
 .results{
-    font-family: var(--ff-primary);
     margin: 0 auto;
     font-size:var(--fs-body);
 }
@@ -142,6 +141,11 @@
     font-size:var(--fs-sentences);
     border: 3px solid black;
     margin-bottom: 10px;
+    padding: 0 5px;
+}
+
+.sentence{
+    padding-bottom: 3px;
 }
 
 .sentences__twitter {

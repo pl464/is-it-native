@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="sentences">
-                <div class="heading twitter-heading">Twitter</div>
+                <div class="heading twitter-heading">TWITTER</div>
                 <div class="sentences__twitter">
                     <p>Twitter sentence1</p>
                     <p>Twitter sentence2</p>
@@ -42,7 +42,7 @@
                     <p>Twitter sentence9</p>
                     <p>Twitter sentence10</p>
                 </div>
-                <div class="heading reddit-heading">Reddit</div>
+                <div class="heading reddit-heading">REDDIT</div>
                 <div class="sentences__reddit">
                     <p>Reddit sentence1</p>
                     <p>Reddit sentence2</p>
@@ -55,7 +55,7 @@
                     <p>Reddit sentence9</p>
                     <p>Reddit sentence10</p>
                 </div>
-                <div class="heading wikipedia-heading">Wikipedia</div>
+                <div class="heading wikipedia-heading">WIKIPEDIA</div>
                 <div class="sentences__wikipedia">
                     <p>Wikipedia sentence1</p>
                     <p>Wikipedia sentence2</p>
@@ -99,19 +99,19 @@
                 <div class="heading twitter-heading">TWITTER</div>
                 <div class="sentences__twitter">
 				{% for sent in twitter_sentences %}
-                    <p>{{sent}}</p>
+                    <p class="sentence">{{sent}}</p>
 				{% endfor %}
                 </div>
                 <div class="heading reddit-heading">REDDIT</div>
                 <div class="sentences__reddit">
                 {% for sent in reddit_sentences %}
-                    <p>{{sent}}</p>
+                    <p class="sentence">{{sent}}</p>
 				{% endfor %}
                 </div>
                 <div class="heading wikipedia-heading">WIKIPEDIA</div>
                 <div class="sentences__wikipedia">
                 {% for sent in wikipedia_sentences %}
-                    <p>{{sent}}</p>
+                    <p class="sentence">{{sent}}</p>
 				{% endfor %}
                 </div>
             </div>
