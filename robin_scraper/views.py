@@ -13,6 +13,9 @@ def index_not_used(request):
 def get_about(request):
     return render(request, 'about.html')
 
+def get_documentation(request):
+    return render(request, 'documentation.html')
+
 def index_used(request,search_term):
     #note that this will break if there is more than one Searcher Object
     #do model shenanigans to return 3 arrays and 5 metrics
