@@ -51,6 +51,7 @@
     list-style:none;
     justify-content: center;
     font-size: var(--fs-body);
+    font-family: var(--ff-body);
 }
 
 .nav__item{
@@ -119,6 +120,7 @@
 }
 
 .confidence-item{
+    font-family: var(--ff-body);
     margin: 0 20px;
 }
 
@@ -131,7 +133,6 @@
 }
 
 .sentences {
-    font-family: var(--ff-secondary);
     justify-content:center;
     padding: 10px;
 }
