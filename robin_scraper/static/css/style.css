@@ -12,6 +12,7 @@
 /*    Primary/secondary font families*/
     --ff-primary: 'Patrick Hand SC', serif;
     --ff-secondary: 'Biryani', serif;
+    --ff-body: 'Didact Gothic', serif;
 /*    Font weights*/
     --fw-reg: 300;
     --fw-bold: 800;
@@ -21,20 +22,21 @@
     --color-wikipedia: rgba(235, 235, 235, 0.5);
 /*    Font sizes- rem unit is relative to font size of the root element*/
     --fs-h1: 2.5rem;
-    --fs-body: 1.5rem;
-    --fs-sentences: 1rem;
+    --fs-body: 1.35rem;
+    --fs-sentences: 1.2rem;
     
 /*    Box shadow: */
     --bs: 0.25em 0.25em .75em rgba(0,0,0,.25), 
         0.125em 0.125em 0.25em rgba(0,0,0,.15);
     
     text-align:center;
-    font-family: var(--ff-primary);
+    font-family: var(--ff-body);
 }
 
 .header {
     background-color:#EAF4F4;
-    font-size:var(--fs-h1);
+    font-size: var(--fs-h1);
+    font-family: var(--ff-primary);
     padding: 0 0 20px;
 }
 
@@ -134,27 +136,22 @@
     padding: 10px;
 }
 
-.sentences__twitter {
+.sentences__twitter, .sentences__reddit, .sentences__wikipedia {
     text-align:left;
     font-size:var(--fs-sentences);
     border: 3px solid black;
     margin-bottom: 10px;
+}
+
+.sentences__twitter {
     background-color:var(--color-twitter);
 }
 
 .sentences__reddit{
-    text-align:left;
-    font-size:var(--fs-sentences);
-    border: 3px solid black;
-    margin-bottom: 10px;
     background-color:var(--color-reddit);
 }
 
 .sentences__wikipedia{
-    text-align:left;
-    font-size:var(--fs-sentences);
-    border: 3px solid black;
-    margin-bottom: 10px;
     background-color:var(--color-wikipedia);
 }
 
@@ -256,6 +253,7 @@
 
 .footer__text{
     margin-left: 1em;
+    font-family: var(--ff-primary);
 }
 
 html, body {height: 100%;}
