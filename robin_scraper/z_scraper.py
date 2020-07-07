@@ -37,6 +37,7 @@ class api_and_cleaner:
         toRet = re.sub('(RT )?@(\w)*:?\s', '', toRet)
         toRet = re.sub('(https://t)','', toRet)
         toRet = re.sub('(\w)*:\w', '', toRet)
+        toRet = re.sub('&amp;', '&', toRet)
         toRet = toRet.strip()
         toRet = re.split('[(\.|\?|!)\n]', toRet)
         return list(filter(None, toRet))
