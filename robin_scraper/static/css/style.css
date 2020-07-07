@@ -80,14 +80,12 @@
 }
 
 .search__box {
-    font-family: var(--ff-primary);
-    font-size:24px;
+    font-size:21px;
     margin:0;
     padding-left: 5px;
 }
 
 .search__button{
-    font-family: var(--ff-primary);
     font-size:18px;
     font-weight:var(--fw-bold);
     line-height:30px;
@@ -119,7 +117,7 @@
     justify-content:center;
 }
 
-.confidence-item{
+.confidence-item {
     font-family: var(--ff-body);
     margin: 0 20px;
 }
@@ -220,6 +218,7 @@
 }
 
 .averages {
+    font-size: var(--fs-sentences);
     margin-bottom: 20px;
 }
 
