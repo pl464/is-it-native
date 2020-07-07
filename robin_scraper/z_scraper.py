@@ -37,7 +37,14 @@ class api_and_cleaner:
         toRet = re.sub('(RT )?@(\w)*:?\s', '', toRet)
         toRet = re.sub('(https://t)','', toRet)
         toRet = re.sub('(\w)*:\w', '', toRet)
+        # Replace HTML Character Entities
         toRet = re.sub('&amp;', '&', toRet)
+        toRet = re.sub('&gt;', '>', toRet)
+        toRet = re.sub('&lt;', '<', toRet)
+        toRet = re.sub('&nbsp;', ' ', toRet)
+        toRet = re.sub('&quot;', '\"', toRet)
+        toRet = re.sub('&apos;', '\'', toRet)
+        
         toRet = toRet.strip()
         toRet = re.split('[(\.|\?|!)\n]', toRet)
         return list(filter(None, toRet))
