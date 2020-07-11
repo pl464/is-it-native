@@ -21,9 +21,9 @@ class Searcher(models.Model):
         reddit_api = z_scraper.reddit_api_and_cleaner(phrase,self)
         wiki_api = z_scraper.wikipedia_api_and_cleaner(phrase,self)
 
-        twitterResults, twitterConf, avgRT = twitt_api.search(50, 10, 5, 10)
-        redditResults, redditConf, avgUV = reddit_api.search(50, 60, 5, 10)
-        wikiResults, wikiConf, res_count = wiki_api.search(10, 2, 1, 10)
+        twitterResults, avgRT = twitt_api.search(50, 10)
+        redditResults, avgUV = reddit_api.search(50, 10)
+        wikiResults, res_count = wiki_api.search(15, 10)
         informal_c = z_scraper.get_informal(avgRT, avgUV)
         formal_c = z_scraper.get_formal(res_count)
         return [twitterResults, redditResults, wikiResults, formal_c, informal_c, "{:.2f}".format(avgRT),"{:.2f}".format(avgUV), res_count, phrase]

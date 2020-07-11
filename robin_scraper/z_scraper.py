@@ -29,13 +29,13 @@ class api_and_cleaner:
         self.r_client_secret = auth_holder.r_client_secret
         self.r_username = auth_holder.r_username
         self.r_password = auth_holder.r_password
-
-    def cleanText(self,text):
+        
+    def cleanText(self, text):
         text.replace("’", "'")
         text = ''.join(c for c in unicodedata.normalize('NFC', text) if c <= '\uFFFF')
         toRet = ''.join(c for c in text if c <= '\uFFFF')
         toRet = re.sub('(RT )?@(\w)*:?\s', '', toRet)
-        toRet = re.sub('(https://t)','', toRet)
+        toRet = re.sub('(https://t)', '', toRet)
         toRet = re.sub('(\w)*:\w', '', toRet)
         # Replace HTML Character Entities
         toRet = re.sub('&amp;', '&', toRet)
@@ -44,35 +44,30 @@ class api_and_cleaner:
         toRet = re.sub('&nbsp;', ' ', toRet)
         toRet = re.sub('&quot;', '\"', toRet)
         toRet = re.sub('&apos;', '\'', toRet)
-        
+
         toRet = toRet.strip()
         toRet = re.split('[(\.|\?|!)\n]', toRet)
         return list(filter(None, toRet))
+
     # def remove_whitespace_and_craziness(self,sentence): #unused function
     #     toRet = re.split('[,@#:\'\:; ?!~_   ]', sentence)
     #     return list(filter(None, toRet))
 
-    def process_json(self,howManyToQuery):
-        return [],5,10
+    def process_json(self, howManyToQuery):
+        return [], 5, 10
 
-    def decide_confidence(self,n, avg, cutoff, ncutoff):
-        if (avg < cutoff or n < ncutoff):
-            return 'likely unreliable'
-        else:
-            return 'likely reliable'
-
-    def search(self,howManyToQuery,cutoff,ncutoff,dispcutoff):
+    def search(self, howManyToQuery, dispcutoff):
         jsonStuff = self.get_json(howManyToQuery)
 
-        toRet, metricTotal, n = self.process_json(jsonStuff,dispcutoff)
+        toRet, metricTotal, n = self.process_json(jsonStuff, dispcutoff)
 
         if not n == 0:
-            print('metric avg: ', metricTotal / n)
-            return toRet, self.decide_confidence(n, metricTotal / n, cutoff, ncutoff), metricTotal / n
-        return {}, 'No results: unreliable', 0
+            return toRet, metricTotal / n
+        return {}, 0
+
 
 class twitter_api_and_cleaner(api_and_cleaner):
-    def get_json(self,howManyToQuery):
+    def get_json(self, howManyToQuery):
         python_tweets = Twython(self.t_consumer_key, self.t_consumer_secret)
         query = {'q': '"' + self.exactTerm + '"',
                  'count': howManyToQuery,
@@ -80,7 +75,7 @@ class twitter_api_and_cleaner(api_and_cleaner):
                  }
         return python_tweets.search(**query)
 
-    def process_json(self,jsonStuff,dispcutoff):
+    def process_json(self, jsonStuff, dispcutoff):
         sentences = {}
         retweetTotal = 0
         test = []
@@ -93,13 +88,13 @@ class twitter_api_and_cleaner(api_and_cleaner):
                         sentences[sent.strip()] = tweet['retweet_count']
         # now lets turn lists into strings
         sentences = {k: v for k, v in sorted(sentences.items(), key=lambda item: item[1], reverse=True)}
-        toRet = [key for key in list(sentences.keys())[0:dispcutoff]] #confirmed to work
+        toRet = [key for key in list(sentences.keys())[0:dispcutoff]]  # confirmed to work
 
         return (toRet, retweetTotal, len(sentences))
 
 
 class reddit_api_and_cleaner(api_and_cleaner):
-    def get_json(self,howManyToQuery):
+    def get_json(self, howManyToQuery):
         sentences = {}
         reddit = praw.Reddit(client_id=self.r_client_id, \
                              client_secret=self.r_client_secret, \
@@ -122,9 +117,12 @@ class reddit_api_and_cleaner(api_and_cleaner):
 
         return (toRet, upvoteTotal, len(sentences))
 
+
 class wikipedia_api_and_cleaner(api_and_cleaner):
-    def get_json(self,howManyToQuery):
-        resp = requests.get('http://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch='+self.exactTerm+'&srlimit='+str(howManyToQuery))
+    def get_json(self, howManyToQuery):
+        resp = requests.get(
+            'http://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=' + self.exactTerm + '&srlimit=' + str(
+                howManyToQuery))
         return resp.json()
 
     def process_json(self, jsonStuff, dispcutoff):
@@ -137,13 +135,13 @@ class wikipedia_api_and_cleaner(api_and_cleaner):
                     valid_examples.append(BeautifulSoup(result['snippet'], 'html.parser').text)
                 elif (self.exactTerm.lower() in result['title'].lower()):
                     is_contained += 1
-        return (valid_examples, is_contained, 1) #n=1 because is_contained is the deciding metric
-
+        return (valid_examples, is_contained, 1)  # n=1 because is_contained is the deciding metric
 
         print('number of exact matches capitalization insensitive:', is_contained)
         print('deem to be likely:', is_contained >= instances_until_likely)
 
-def get_informal(twitt,redd):
+
+def get_informal(twitt, redd):
     t_low = 100
     r_low = 100
     t_high = 600
@@ -153,6 +151,8 @@ def get_informal(twitt,redd):
     elif twitt >= t_low or redd >= r_low:
         return "Inconclusive"
     return "Unlikely"
+
+
 def get_formal(wiki):
     w_cut = 2
     if wiki > w_cut:
