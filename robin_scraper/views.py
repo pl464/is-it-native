@@ -23,7 +23,7 @@ def index_used(request,search_term):
     context_categories = ['twitter_sentences','reddit_sentences','wikipedia_sentences','formal_confidence',\
                           'informal_confidence','twitter_metric','reddit_metric','wikipedia_metric','search_term']
 
-    responses = Searcher.objects.get().return_all_goodies(search_term)
+    responses = Searcher.objects.get().get_results(search_term)
     context = dict(zip(context_categories,responses))
     # context = {  # data passed into template that the template displays
     #     'twitter_sentences': [x for x in range(10)],

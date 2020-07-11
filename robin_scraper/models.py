@@ -14,7 +14,7 @@ class Searcher(models.Model):
     r_username =models.CharField(max_length=200)
     r_password =models.CharField(max_length=200)
 
-    def return_all_goodies(self,phrase):
+    def get_results(self,phrase):
         #['twitter_sentences','reddit_sentences','wikipedia_sentences','formal_confidence',\
         #                  'informal_confidence','twitter_metric','reddit_metric','wikipedia_metric','search_term']
         twitt_api = z_scraper.twitter_api_and_cleaner(phrase,self)
