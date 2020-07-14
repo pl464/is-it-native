@@ -12,7 +12,7 @@
         <p class="results">
             This webpage is intended to help English learners. This tool allows users to search up an English string - perhaps words or phrases they’ve encountered or come up with themselves- and see how it’s used on various web sources. This can not only provide examples for the word or phrase, but also determine whether it’s likely to be used at all. 
             <br><br>
-            The tool also offers a prediction as to how likely the string is to appear in native English by using metrics obtained from the data, such as retweets and upvotes. The reasoning is that words or phrases used in native-approved contexts are more likely to be popular/retweeted/upvoted, and so these metrics can be used to indicate native language. Though this is obviously oversimplified, we’ve found that the predictions hold water a surprising amount of the time (see “Documentation” for some examples). Currently, the prediction about “informal contexts” involves retweets and upvotes, while the one for “formal contexts” only involves the number of hits from Wikipedia. In the future, we could expand to include more sources.<br><br>
+            The tool also offers a prediction as to how likely the string is to appear in native English by using metrics obtained from the data, such as retweets and upvotes. The reasoning is that words or phrases used in native-approved contexts are more likely to be popular/retweeted/upvoted, and so these metrics can be used to indicate native language. Though this is obviously oversimplified, we’ve found that the predictions hold water a surprising amount of the time. Currently, the prediction about “informal contexts” involves retweets and upvotes, while the one for “formal contexts” only involves the number of hits from Wikipedia. In the future, we could expand to include more sources.<br><br>
         </p>
 
         <h2>Implications</h2>
@@ -24,11 +24,5 @@
             <br><br>
         </p>
 
-        <h2>Technologies Used</h2>
-
-        <p class="results">
-            The program to retrieve and process the data is written in Python. To scrape the data, we used the Python libraries Twython, Praw, and BeautifulSoup to access the Twitter, Reddit, and Wikipedia APIs, respectively. The webpage was designed using HTML/CSS, and put together using the Django framework. This web application is hosted on the Heroku platform.
-            <br><br>
-        </p>
     </div>
  {% endblock %}

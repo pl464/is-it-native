@@ -12,7 +12,8 @@ def index_not_used(request):
     
 def get_about(request):
     return render(request, 'about.html')
-
+def get_contact(request):
+    return render(request, 'contact.html')
 def get_documentation(request):
     return render(request, 'documentation.html')
 

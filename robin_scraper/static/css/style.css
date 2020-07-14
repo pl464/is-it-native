@@ -34,7 +34,17 @@
 }
 
 /* For other pages */
-.about-text p{
+.about-text .contact_text p{
+    text-align:left;
+    margin: 0.75em;
+    font-size: var(--fs-body);
+}
+.documentation-text p{
+    text-align:left;
+    margin: 0.75em;
+    font-size: var(--fs-body);
+}
+.contact_text p{
     text-align:left;
     margin: 0.75em;
     font-size: var(--fs-body);
@@ -43,7 +53,7 @@
 h2 {
     font-family: var(--ff-primary);
     font-size: 2.25rem;
-    width: 8em;
+  /*  width: 8em; */
     margin: 0 auto;
     text-decoration: underline;
 }
@@ -293,4 +303,14 @@ body:before {
 	float:left;
 	width:0;
 	margin-top:-32767px;/
+}
+
+.centered {
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.contact_text{
+	left-margin: 50px;
 }
